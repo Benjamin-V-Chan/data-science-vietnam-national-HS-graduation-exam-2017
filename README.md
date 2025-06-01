@@ -103,3 +103,22 @@ project-root/
 
    Plots actual vs. predicted total scores and saves the figure as `outputs/figures/actual_vs_pred.png`.
 
+## Requirements
+
+* Python 3.7 or higher
+* pandas
+* scikit-learn
+* matplotlib
+* joblib
+
+Install all dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Acknowledgments
+
+* **Dataset Name:** Vietnam National HS Graduation Exam - 2017
+* **Dataset Author:** ume
+* **Dataset Source:** [https://www.kaggle.com/datasets/invictus169/vietnam-national-hs-graduation-exam-2017](https://www.kaggle.com/datasets/invictus169/vietnam-national-hs-graduation-exam-2017)
