@@ -1,12 +1,19 @@
-# Pseudocode:
-# - import pandas, os
-# - define feature_engineering(df)
-#     - compute total_score as sum of key score columns
-#     - compute math_lit_diff as difference
-#     - return df with new features
-# - in main:
-#     - create outputs/ if needed
-#     - read outputs/processed_data.csv
-#     - apply feature_engineering
-#     - save as outputs/features_data.csv
-# - guard main
+# scripts/04_feature_engineering.py
+import pandas as pd
+import os
+
+def feature_engineering(df):
+    df["total_score"] = df[
+        ["mathematics","literature","english","combined_natural_sciences","combined_social_sciences"]
+    ].sum(axis=1)
+    df["math_lit_diff"] = df["mathematics"] - df["literature"]
+    return df
+
+def main():
+    os.makedirs("outputs", exist_ok=True)
+    df = pd.read_csv("outputs/processed_data.csv")
+    df_fe = feature_engineering(df)
+    df_fe.to_csv("outputs/features_data.csv", index=False)
+
+if __name__ == "__main__":
+    main()
