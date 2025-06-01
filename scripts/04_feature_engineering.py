@@ -1,4 +1,3 @@
-# scripts/04_feature_engineering.py
 import pandas as pd
 import os
 
