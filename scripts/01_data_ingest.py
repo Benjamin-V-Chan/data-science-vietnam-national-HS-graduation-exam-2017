@@ -1,9 +1,13 @@
-# Pseudocode:
-# - import pandas, os
-# - define load_data(path)
-#     - return pd.read_csv(path)
-# - in main:
-#     - create outputs/ if needed
-#     - load data from data/2017.csv
-#     - save as outputs/raw_data.csv
-# - guard main with if __name__=="__main__"
+import pandas as pd
+import os
+
+def load_data(path="data/2017.csv"):
+    return pd.read_csv(path)
+
+def main():
+    os.makedirs("outputs", exist_ok=True)
+    df = load_data()
+    df.to_csv("outputs/raw_data.csv", index=False)
+
+if __name__ == "__main__":
+    main()
