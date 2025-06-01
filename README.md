@@ -35,3 +35,71 @@ project-root/
 └── requirements.txt         # Python dependencies
 ```
 
+## Usage
+
+1. **Setup the Project:**
+
+   * Clone the repository.
+   * Ensure you have Python installed.
+   * Install required dependencies using the requirements.txt file.
+
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+2. **Data Ingestion:**
+
+   ```bash
+   python scripts/01_data_ingest.py
+   ```
+
+   This loads `data/2017.csv` and saves it as `outputs/raw_data.csv`.
+
+3. **Data Preprocessing:**
+
+   ```bash
+   python scripts/02_data_preprocessing.py
+   ```
+
+   This reads `outputs/raw_data.csv`, imputes missing values, drops duplicates, and writes `outputs/processed_data.csv`.
+
+4. **Exploratory Data Analysis:**
+
+   ```bash
+   python scripts/03_exploratory_data_analysis.py
+   ```
+
+   Generates descriptive statistics (`eda_summary.csv`), a correlation matrix (`correlation_matrix.csv`), a heatmap (`outputs/figures/correlation_heatmap.png`), and histograms for each numeric column (`outputs/figures/<subject>_hist.png`).
+
+5. **Feature Engineering:**
+
+   ```bash
+   python scripts/04_feature_engineering.py
+   ```
+
+   Reads `outputs/processed_data.csv`, creates `total_score` and `math_lit_diff` features, and saves `outputs/features_data.csv`.
+
+6. **Model Training:**
+
+   ```bash
+   python scripts/05_model_training.py
+   ```
+
+   Loads `outputs/features_data.csv`, splits into training/testing sets, runs GridSearchCV on a `RandomForestRegressor`, saves the best model at `outputs/model/model.pkl`, and writes best parameters and score to `outputs/model/metrics.json`.
+
+7. **Model Evaluation:**
+
+   ```bash
+   python scripts/06_model_evaluation.py
+   ```
+
+   Loads the trained model, predicts on the full dataset, computes MSE and R², and writes metrics to `outputs/model/eval_metrics.txt`.
+
+8. **Visualization:**
+
+   ```bash
+   python scripts/07_visualization.py
+   ```
+
+   Plots actual vs. predicted total scores and saves the figure as `outputs/figures/actual_vs_pred.png`.
+
